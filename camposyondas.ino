@@ -108,7 +108,7 @@ void loop() {
 // Función para servir la página HTML
 void handleRoot() {
   String html = R"rawliteral(
-    <!DOCTYPE html>
+   <!DOCTYPE html>
     <html lang="es">
     <head>
       <meta charset="UTF-8">
@@ -140,6 +140,18 @@ void handleRoot() {
           flex-direction: column;
           align-items: center;
           margin-bottom: 20px;
+        }
+        h2{
+          margin: 10px;
+        }
+        a{
+          text-decoration: none;
+          color: #000;
+          font-size: 16px;
+          font-weight: 800;
+        }
+        li{
+          margin-bottom: 10px;
         }
         .label h2{
           color: #007fff;
@@ -174,7 +186,28 @@ void handleRoot() {
         </div>
         
         <footer>
-          <h2>Nombre de los pelagos que hicieron esto</h2>
+          <h2>Integrantes</h2>
+          <ul>
+            <li>
+              <a href="mailto:juliethy.fallam@uqvirtual.edu.co?Subject=Cubeta%20de%20agua">Julieth Falla Murillo</a>
+            </li>
+            <li>
+              <a href="mailto:bayrond.cortesf@uqvirtual.edu.co?Subject=Cubeta%20de%20agua">Bayron Daniel Cortes Falla</a>
+            </li>
+            <li>
+              <a href="mailto:diegoa.camposl@uqvirtual.edu.co?Subject=Cubeta%20de%20agua">Diego Armando Campos</a>
+            </li>
+            <li>
+              <a href="mailto:david.francoo@uqvirtual.edu.co?Subject=Cubeta%20de%20agua">David Francisco Ospina</a>
+            </li>
+            <li>
+              <a href="mailto:santiago.jaramillov@uqvirtual.edu.co?Subject=Cubeta%20de%20agua">Santiago Jaramillo Valencia</a>
+            </li>
+            <li>
+              <a href="mailto:ejlozanom@uqvirtual.edu.co?Subject=Cubeta%20de%20agua">Elu Jesus Lozano Mendoza</a>
+            </li>
+          </ul>
+          
           <h2>link del repositorio</h2>
         </footer>
       </div>
@@ -183,7 +216,7 @@ void handleRoot() {
         ws.onmessage = function(event) {
             const data = JSON.parse(event.data);
             let pot1Value = parseInt(data.pot1, 10); // Convertir a entero con base 10
-            let hzluz = (1 / ((pot1Value/1000) * 2)).toFixed(3); // Limitar a 2 decimales
+            let hzluz = (1 / ((pot1Value/1000) * 2)).toFixed(6); // Limitar a 2 decimales
             document.getElementById("pot1Value").textContent = hzluz + ' Hz';
             document.getElementById("pot2Value").textContent = parseFloat(data.pot2).toFixed(2) + ' Hz'; // Limitar a 2 decimales
         };
