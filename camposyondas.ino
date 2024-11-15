@@ -108,7 +108,7 @@ void loop() {
 // Función para servir la página HTML
 void handleRoot() {
   String html = R"rawliteral(
-   <!DOCTYPE html>
+ <!DOCTYPE html>
     <html lang="es">
     <head>
       <meta charset="UTF-8">
@@ -208,7 +208,7 @@ void handleRoot() {
             </li>
           </ul>
           
-          <h2>link del repositorio</h2>
+          <h2><a target="_blank" href="https://github.com/EluJLM/Cubeta-de-Ondas">Repositorio del codigo</a></h2>
         </footer>
       </div>
       <script>
