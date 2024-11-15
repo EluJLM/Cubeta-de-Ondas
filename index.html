@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+    <html lang="es">
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1"/>
+      <title>Cubeta de ondas</title>
+      <style>
+        *{
+          margin: 0; padding: 0;
+          font-family: monospace;
+        }
+        .padre{
+          margin: auto;
+          width: 70%;
+        }
+      
+        @media screen and (max-width:700px) {
+            .padre {
+                width: 100%;
+            }
+        }
+        h1{
+          padding: 10px; font-size: 34px; color: #fff;
+          background: #007fff;
+          text-align: center;
+          margin-bottom: 20px;
+        }
+        .label{
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          margin-bottom: 20px;
+        }
+        h2{
+          margin: 10px;
+        }
+        a{
+          text-decoration: none;
+          color: #000;
+          font-size: 16px;
+          font-weight: 800;
+        }
+        li{
+          margin-bottom: 10px;
+        }
+        .label h2{
+          color: #007fff;
+          font-weight: 700;
+        }
+        span{
+          border: 3px solid #007fff;
+          border-radius: 6px;
+          padding: 0px 15px;
+          font-size: 30px;
+          margin-bottom: 50px;
+        }
+        footer{
+          width: 100%;
+          background: #003264;
+          padding: 10px;
+          color: #fff;
+        }
+      </style>
+    </head>
+    <body>
+      <div class="padre">
+
+        <h1>Cubeta de ondas</h1>
+        <div class="label">
+          <h2>LUZ</h2>
+          <span id="pot1Value">0 Hz</span>
+        </div>
+        <div class="label">
+          <h2>ONDAS</h2>
+          <span id="pot2Value">0 Hz</span>
+        </div>
+        
+        <footer>
+          <h2>Integrantes</h2>
+          <ul>
+            <li>
+              <a href="mailto:juliethy.fallam@uqvirtual.edu.co?Subject=Cubeta%20de%20agua">Julieth Falla Murillo</a>
+            </li>
+            <li>
+              <a href="mailto:bayrond.cortesf@uqvirtual.edu.co?Subject=Cubeta%20de%20agua">Bayron Daniel Cortes Falla</a>
+            </li>
+            <li>
+              <a href="mailto:diegoa.camposl@uqvirtual.edu.co?Subject=Cubeta%20de%20agua">Diego Armando Campos</a>
+            </li>
+            <li>
+              <a href="mailto:david.francoo@uqvirtual.edu.co?Subject=Cubeta%20de%20agua">David Francisco Ospina</a>
+            </li>
+            <li>
+              <a href="mailto:santiago.jaramillov@uqvirtual.edu.co?Subject=Cubeta%20de%20agua">Santiago Jaramillo Valencia</a>
+            </li>
+            <li>
+              <a href="mailto:ejlozanom@uqvirtual.edu.co?Subject=Cubeta%20de%20agua">Elu Jesus Lozano Mendoza</a>
+            </li>
+          </ul>
+          
+          <h2>link del repositorio</h2>
+        </footer>
+      </div>
+      <script>
+        const ws = new WebSocket('ws://' + window.location.hostname + ':81');
+        ws.onmessage = function(event) {
+            const data = JSON.parse(event.data);
+            let pot1Value = parseInt(data.pot1, 10); // Convertir a entero con base 10
+            let hzluz = (1 / ((pot1Value/1000) * 2)).toFixed(6); // Limitar a 2 decimales
+            document.getElementById("pot1Value").textContent = hzluz + ' Hz';
+            document.getElementById("pot2Value").textContent = parseFloat(data.pot2).toFixed(2) + ' Hz'; // Limitar a 2 decimales
+        };
+        ws.onopen = function() {
+          console.log("Conectado al servidor WebSocket");
+        };
+        ws.onclose = function() {
+          console.log("Desconectado del servidor WebSocket");
+        };
+      </script>
+    </body>
+    </html>
